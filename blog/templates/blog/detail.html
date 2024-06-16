@@ -1,0 +1,93 @@
+{% extends "base.html" %}
+
+{% block page_title %}<title>{{ post.title }}</title>{% endblock page_title %}
+{% block page_content %}
+    <section class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_5.jpg');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-end justify-content-center">
+          <div class="col-md-9 ftco-animate mb-5 text-center">
+          	<p class="breadcrumbs mb-0"><span class="mr-2"><a href="index.html">Home <i class="fa fa-chevron-right"></i></a></span> <span class="mr-2"><a href="index.html">Blog <i class="fa fa-chevron-right"></i></a></span> <span>Blog Single <i class="fa fa-chevron-right"></i></span></p>
+            <h1 class="mb-0 bread">Blog Article</h1>
+          </div>
+        </div>
+      </div>
+    </section>
+
+		<section class="ftco-section ftco-degree-bg">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 ftco-animate">
+          	<p>
+              {% if post.image %}
+                <img src="{{ post.image.url }}" alt="{{ post.title }}" class="img-fluid">
+              {% endif %}
+              <img src="images/image_1.jpg" alt="" class="img-fluid">
+            </p>
+            <h2 class="mb-3">{{ post.title }}</h2>
+            <p>{{ post.body | linebreaks }}</p>
+
+            <div class="pt-5 mt-5">
+              <h3 class="mb-5">{{ comments|length }} Comments</h3>
+              <ul class="comment-list">
+                {% for comment in comments %}
+                <li class="comment">
+                  <div class="comment-body">
+                    <h3>{{ comment.author }}</h3>
+                    <div class="meta">{{ comment.created_on.date }}</div>
+                    <p>{{ comment.body | linebreaks }}</p>
+                  </div>
+                </li>
+                {% endfor %}
+              
+              <div class="comment-form-wrap pt-5">
+                <h3 class="mb-5">Leave a comment</h3>
+                <form method="post" class="p-5 bg-light">
+                  {% csrf_token %}
+                  <div class="form-group">
+                    <label>Name *</label>
+                    {{ form.author }}
+                  </div>
+                  <div class="form-group">
+                    <label>Message</label>
+                    {{ form.body }}
+                  </div>
+                  <button type="submit" class="btn py-3 px-4 btn-primary">Post comment</button>
+                </form>
+              </div>
+            </div>
+
+          </div> <!-- .col-md-8 -->
+          <div class="col-lg-4 sidebar pl-lg-5 ftco-animate">
+            <div class="sidebar-box ftco-animate">
+              <div class="categories">
+                <h3>Services</h3>
+                <li><a href="#">Relation Problem <span class="fa fa-chevron-right"></span></a></li>
+                <li><a href="#">Couples Counseling <span class="fa fa-chevron-right"></span></a></li>
+                <li><a href="#">Depression Treatment <span class="fa fa-chevron-right"></span></a></li>
+                <li><a href="#">Family Problem <span class="fa fa-chevron-right"></span></a></li>
+                <li><a href="#">Personal Problem <span class="fa fa-chevron-right"></span></a></li>
+                <li><a href="#">Business Problem <span class="fa fa-chevron-right"></span></a></li>
+              </div>
+            </div>
+
+            <div class="sidebar-box ftco-animate">
+              <h3>Recent Blog</h3>
+              {% for latest_post in latest_posts %}
+              <div class="block-21 mb-4 d-flex">
+                <a class="blog-img mr-4" style="background-image: url('{{latest_post.image.url}}');"></a>
+                <div class="text">
+                  <h3 class="heading"><a  href="{% url 'blog_detail' latest_post.pk %}">{{latest_post.title}}</a></h3>
+                  <div class="meta">
+                    <div><a href="{% url 'blog_detail' latest_post.pk %}"><span class="fa fa-calendar"></span>{{ post.created_on }}</a></div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section> <!-- .section -->
+{% endblock page_content %}

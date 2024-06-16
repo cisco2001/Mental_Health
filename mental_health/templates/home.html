@@ -1,0 +1,260 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block page_title %}<title>Uni Therapy</title>{% endblock page_title %}
+{% block page_content %}
+<div class="hero-wrap" style="background-image: url('{% static 'images/cover.jpg' %}');" data-stellar-background-ratio="0.5">
+      <div class="overlay"></div>
+      <div class="container">
+        <div class="row no-gutters slider-text align-items-center">
+          <div class="col-md-6 ftco-animate d-flex align-items-end">
+          	<div class="text w-100">
+	            <h1 class="mb-4">Counseling For Your Better Life</h1>
+	            <p class="mb-4">Your Mental Health Matters</p>
+	            {% if not user.is_authenticated%}
+	            	<p><a href="{% url 'register' %}" class="btn btn-primary py-3 px-4">Register</a></p>
+	            {% endif %}
+            </div>
+          </div>
+          <a href="https://vimeo.com/603977456" class="img-video popup-vimeo d-flex align-items-center justify-content-center">
+          	<span class="fa fa-play"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <section class="ftco-intro">
+    	<div class="container">
+    		<div class="row no-gutters">
+    			<div class="col-md-4 d-flex">
+    				<div class="intro aside-stretch d-lg-flex w-100">
+    					<div class="icon">
+    						<span class="flaticon-checklist"></span>
+    					</div>
+    					<div class="text">
+    						<h2>100% Confidential</h2>
+    						<p>Your privacy is our priority. We ensure that all your information remains confidential and secure.</p>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-md-4 d-flex">
+    				<div class="intro color-1 d-lg-flex w-100">
+    					<div class="icon">
+    						<span class="flaticon-employee"></span>
+    					</div>
+    					<div class="text">
+    						<h2>Qualified Team</h2>
+    						<p>Our team consists of professionals dedicated to providing you with the highest quality care and support</p>
+    					</div>
+    				</div>
+    			</div>
+    			<div class="col-md-4 d-flex">
+    				<div class="intro color-2 d-lg-flex w-100">
+    					<div class="icon">
+    						<span class="flaticon-umbrella"></span>
+    					</div>
+    					<div class="text">
+    						<h2>Individual Approach</h2>
+    						<p>We understand that everyone is unique. Our personalized approach ensures that you receive tailored guidance and support to meet your specific needs</p>
+    					</div>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+		<section class="ftco-section">
+    	<div class="container">
+    		<div class="row justify-content-center pb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+          	<span class="subheading">Services</span>
+            <h2>How It Works</h2>
+          </div>
+        </div>
+    		<div class="row">
+    			<div class="col-md-4 d-flex align-items-stretch ftco-animate">
+    				<div class="services-2 text-center">
+    					<div class="icon-wrap">
+    						<div class="number d-flex align-items-center justify-content-center"><span>01</span></div>
+	    					<div class="icon d-flex align-items-center justify-content-center">
+	    						<span class="flaticon-calendar"></span>
+	    					</div>
+    					</div>
+    					<h2>Book Appointment</h2>
+    					<p>Book your therapy session at a convenient time. Take control of your mental health journey.</p>
+    				</div>
+    			</div>
+    			<div class="col-md-4 d-flex align-items-stretch ftco-animate">
+    				<div class="services-2 text-center">
+    					<div class="icon-wrap">
+    						<div class="number d-flex align-items-center justify-content-center"><span>02</span></div>
+	    					<div class="icon d-flex align-items-center justify-content-center">
+	    						<span class="flaticon-qa"></span>
+	    					</div>
+    					</div>
+    					<h2>Start Discussion</h2>
+  						<p> Open up in a safe space. Share your thoughts, feelings, and challenges with your therapist.</p>
+    				</div>
+    			</div>
+    			<div class="col-md-4 d-flex align-items-stretch ftco-animate">
+    				<div class="services-2 text-center">
+    					<div class="icon-wrap">
+    						<div class="number d-flex align-items-center justify-content-center"><span>03</span></div>
+	    					<div class="icon d-flex align-items-center justify-content-center">
+	    						<span class="flaticon-checklist"></span>
+	    					</div>
+    					</div>
+    					<h2>Enjoy</h2>
+  						<p>Find comfort and support. Explore strategies for personal growth and enjoy the benefits of therapy.</p>
+    				</div>
+    			</div>
+    		</div>
+    	</div>
+    </section>
+
+		<section class="ftco-section">
+			<div class="container">
+				<div class="row justify-content-center mb-5">
+          <div class="col-md-8 text-center heading-section ftco-animate">
+          	<span class="subheading">Our Services</span>
+            <h2 class="mb-3">We Can Help You With This Situation</h2>
+          </div>
+        </div>
+				<div class="row tabulation mt-4 ftco-animate">
+  				<div class="col-md-4">
+						<ul class="nav nav-pills nav-fill d-md-flex d-block flex-column">
+						  <li class="nav-item text-left">
+						    <a class="nav-link active py-4" data-toggle="tab" href="#services-1">Relation Problem</a>
+						  </li>
+						   <li class="nav-item text-left">
+						    <a class="nav-link py-4" data-toggle="tab" href="#services-2">Academic Challenges</a>
+						  </li>
+						  <li class="nav-item text-left">
+						    <a class="nav-link py-4" data-toggle="tab" href="#services-3">Depression Treatment</a>
+						  </li>
+						  <li class="nav-item text-left">
+						    <a class="nav-link py-4" data-toggle="tab" href="#services-4">Family Problem</a>
+						  </li>
+						  <li class="nav-item text-left">
+						    <a class="nav-link py-4" data-toggle="tab" href="#services-5">Personal Problem</a>
+						  </li>
+						</ul>
+					</div>
+					<div class="col-md-8">
+						<div class="tab-content">
+						  <div class="tab-pane container p-0 active" id="services-1">
+						  	<div class="img" style="background-image: url(images/services-1.jpg);"></div>
+						  	<h3><a href="#">Relation Problem</a></h3>
+						  	<p>Are you struggling in your relationships? Whether it's with a partner, family member, or friend, our therapy sessions can help you navigate and improve your relationships.</p>
+						  </div>
+						  <div class="tab-pane container p-0 fade" id="services-2">
+						  	<div class="img" style="background-image: url(images/services-2.jpg);"></div>
+						  	<h3><a href="#">Academic Challenges</a></h3>
+						  	<p>Feeling overwhelmed by your academic workload? Our therapists can provide support and strategies to help you manage stress, improve focus, and achieve academic success.</p>
+						  </div>
+						  <div class="tab-pane container p-0 fade" id="services-3">
+						  	<div class="img" style="background-image: url(images/services-3.jpg);"></div>
+						  	<h3><a href="#">Depression Treatment</a></h3>
+						  	<p>Depression can feel isolating, but you're not alone. Our therapy services offer a compassionate and supportive environment to help you understand and manage your depression.</p>
+						  </div>
+						  <div class="tab-pane container p-0 fade" id="services-4">
+						  	<div class="img" style="background-image: url(images/services-4.jpg);"></div>
+						  	<h3><a href="#">Family Problem</a></h3>
+						  	<p>Family dynamics can be complex, and conflicts can arise. Our therapists can help you address and resolve family issues, fostering healthier relationships within your family unit.</p>
+						  </div>
+						  <div class="tab-pane container p-0 fade" id="services-5">
+						  	<div class="img" style="background-image: url(images/services-5.jpg);"></div>
+						  	<h3><a href="#">Personal Problem</a></h3>
+						  	<p>Struggling with personal challenges can be daunting, but our therapists are here to support you. Whether it's anxiety, self-esteem issues, or other personal struggles, we can help you work through them and find inner peace.</p>
+						  </div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!--section class="ftco-appointment ftco-section img" style="background-image: url(images/bg_2.jpg);">
+			<div class="overlay"></div>
+    	<div class="container">
+    		<div class="row">
+    			<div class="col-md-6 half ftco-animate">
+    				<h2 class="mb-4">Send a Message &amp; Get in touch!</h2>
+    				<form action="#" class="appointment">
+    					<div class="row">
+								<div class="col-md-6">
+									<div class="form-group">
+			              <input type="text" class="form-control" placeholder="Your Name">
+			            </div>
+								</div>
+								<div class="col-md-6">
+									<div class="form-group">
+			              <input type="text" class="form-control" placeholder="Email">
+			            </div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+			    					<div class="form-field">
+	          					<div class="select-wrap">
+	                      <div class="icon"><span class="fa fa-chevron-down"></span></div>
+	                      <select name="" id="" class="form-control">
+	                      	<option value="">Services</option>
+	                        <option value="">Relation Problem</option>
+	                        <option value="">Couple Counseling</option>
+	                        <option value="">Depression Treatment</option>
+	                        <option value="">Family Problem</option>
+	                        <option value="">Personal Problem</option>
+	                        <option value="">Business Problem</option>
+	                      </select>
+	                    </div>
+			              </div>
+			    				</div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+			              <textarea name="" id="" cols="30" rows="7" class="form-control" placeholder="Message"></textarea>
+			            </div>
+								</div>
+								<div class="col-md-12">
+									<div class="form-group">
+			              <input type="submit" value="Send message" class="btn btn-primary py-3 px-4">
+			            </div>
+								</div>
+    					</div>
+	          </form>
+    			</div>
+    		</div>
+    	</div>
+    </section -->
+
+    <section class="ftco-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+          	<span class="subheading">Blog</span>
+            <h2>Recent Blog</h2>
+          </div>
+        </div>
+        <div class="row d-flex">
+               {% for latest_post in latest_posts %}
+								<div class="col-md-4 d-flex ftco-animate">
+			          	<div class="blog-entry justify-content-end">
+			              <div class="text text-center">
+			              	<a href="{% url 'blog_detail' latest_post.pk %}" class="block-20 img" style="background-image: url('{{latest_post.image.url}}');">
+				              </a>
+				              <div class="meta text-center mb-2 d-flex align-items-center justify-content-center">
+			                	<div>
+			                      <span class="day">{{ post.created_on|date:"d" }}</span>
+			                      <span class="mos">{{ post.created_on|date:"m" }}</span>
+			                      <span class="yr">{{ post.created_on|date:"Y" }}</span>
+			                	</div>
+			                </div>
+			                <h3 class="heading mb-3"><a href="{% url 'blog_detail' latest_post.pk %}">{{latest_post.title}}</a mb-3></h3>
+											<p>{{ post.body|truncatewords:15 }}</p>              
+										</div>
+			            </div>
+			          </div>
+              {% endfor %}
+        </div>
+      </div>
+    </section>	
+{% endblock page_content %}

@@ -1,0 +1,137 @@
+{% extends "dashboard/base.html" %}
+{% block page_title %}<title>User Profile</title>{% endblock page_title %}
+{% block page_content %}
+<div class="main-container">
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-12 col-sm-12">
+							<div class="title">
+								<h4>Profile</h4>
+							</div>
+							<nav aria-label="breadcrumb" role="navigation">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Profile</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-xl-4 col-lg-4 col-md-4 col-sm-12 mb-30">
+						<div class="pd-20 card-box height-100-p">
+							<h5 class="text-center h5 mb-0">{{user.username}}</h5>
+							<p class="text-center text-muted font-14">Your Mental Health Matters</p>
+							<div class="profile-info">
+								<h5 class="mb-20 h5 text-blue">Contact Information</h5>
+								<ul>
+									<li>
+										<span>Email Address:</span>
+										{{user_profile.email}}
+									</li>
+									<li>
+										<span>Phone Number:</span>
+										{{user_profile.phone_number}}
+									</li>
+									<li>
+										<span>University:</span>
+										{{user_profile.university}}
+									</li>
+									<li>
+										<span>Course:</span>
+										{{user_profile.course}}
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="col-xl-8 col-lg-8 col-md-8 col-sm-12 mb-30">
+						<div class="card-box height-100-p overflow-hidden">
+							<div class="profile-tab height-100-p">
+								<div class="tab height-100-p">
+									<ul class="nav nav-tabs customtab" role="tablist">
+
+										<li class="nav-item" style="display: none;">										
+											<li class="nav-item" style="display: none;">
+											<a class="nav-link " data-toggle="tab" href="#timeline" role="tab">Timeline</a>
+										</li>
+										<li class="nav-item" style="display: none;">
+											<a class="nav-link" data-toggle="tab" href="#tasks" role="tab">Tasks</a>
+										</li>
+											<a class="nav-link" data-toggle="tab" href="#setting" role="tab">Update Your Profile</a>
+										</li>
+									</ul>
+									<div class="tab-content">
+										<!-- Timeline Tab End -->
+										<!-- Tasks Tab start -->
+										<!-- Setting Tab start -->
+										<div class="tab-pane fade height-100-p" id="setting" role="tabpanel">
+											<div class="profile-setting">
+												<form method="post" action="{% url 'update_profile' %}">
+											    {% csrf_token %}
+											    <ul class="profile-edit-list row">
+											        <li class="weight-500 col-md-6">
+											            <h4 class="text-blue h5 mb-20">Edit Your Data</h4>
+											            <div class="form-group">
+											                <label for="first_name">First Name</label>
+											                <input id="first_name" class="form-control form-control-lg" type="text" name="first_name" value="{{ user_profile.first_name }}">
+											            </div>
+											            <div class="form-group">
+											                <label for="last_name">Last Name</label>
+											                <input id="last_name" class="form-control form-control-lg" type="text" name="last_name" value="{{ user_profile.last_name }}">
+											            </div>
+											            <div class="form-group">
+											                <label for="email">Email</label>
+											                <input id="email" class="form-control form-control-lg" type="email" name="email" value="{{ user_profile.email }}" readonly>
+											            </div>
+											            <div class="form-group">
+											                <label for="birth_date">Date of Birth</label>
+											                <input id="birth_date" class="form-control form-control-lg date-picker" type="text" name="birth_date" value="{{ user_profile.birth_date|date:'Y-m-d' }}">
+											            </div>
+											            <div class="form-group">
+											                <label>Gender</label>
+											                <div class="d-flex">
+											                    <div class="custom-control custom-radio mb-5 mr-20">
+											                        <input type="radio" id="gender_male" name="gender" class="custom-control-input" value="M" {% if user_profile.gender == "M" %}checked{% endif %}>
+											                        <label class="custom-control-label weight-400" for="gender_male">Male</label>
+											                    </div>
+											                    <div class="custom-control custom-radio mb-5">
+											                        <input type="radio" id="gender_female" name="gender" class="custom-control-input" value="F" {% if user_profile.gender == "F" %}checked{% endif %}>
+											                        <label class="custom-control-label weight-400" for="gender_female">Female</label>
+											                    </div>
+											                </div>
+											            </div>
+											            <div class="form-group">
+											                <label for="phone_number">Phone Number</label>
+											                <input id="phone_number" class="form-control form-control-lg" type="text" name="phone_number" value="{{ user_profile.phone_number }}">
+											            </div>
+											            <div class="form-group">
+											                <label for="course">Course</label>
+											                <input id="course" class="form-control form-control-lg" type="text" name="course" value="{{ user_profile.course }}">
+											            </div>
+											            <div class="form-group">
+											                <label for="university">University</label>
+											                <input id="university" class="form-control form-control-lg" type="text" name="university" value="{{ user_profile.university }}">
+											            </div>
+											            <div class="form-group mb-0">
+											                <input type="submit" class="btn btn-primary" value="Update Information">
+											            </div>
+											        </li>
+											    </ul>
+											</form>
+
+											</div>
+										</div>
+										<!-- Setting Tab End -->
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+{% endblock page_content %}

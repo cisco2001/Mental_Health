@@ -1,0 +1,137 @@
+{% extends "dashboard/base.html" %}
+{% block page_title %}<title>Uni Therapy</title>{% endblock page_title %}
+{% block page_content %}
+
+<style type="text/css">
+	#id_chat_item_container {
+    overflow-y: auto;
+    max-height: 500px; /* Adjust based on your needs */
+}
+
+#id_chat_item_container ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+#id_chat_item_container ul li {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px; /* Space between messages */
+}
+
+.chat_time {
+    font-size: 0.8em;
+    color: gray;
+    margin-top: 5px;
+    align-self: flex-end;
+}
+
+</style>
+<div class="main-container">
+		<div class="pd-ltr-20 xs-pd-20-10">
+			<div class="min-height-200px">
+				<div class="page-header">
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="title">
+								<h4>Chat</h4>
+							</div>
+							<nav aria-label="breadcrumb" role="navigation">
+								<ol class="breadcrumb">
+									<li class="breadcrumb-item"><a href="index.html">Home</a></li>
+									<li class="breadcrumb-item active" aria-current="page">Chat</li>
+								</ol>
+							</nav>
+						</div>
+					</div>
+				</div>
+				<div class="bg-white border-radius-4 box-shadow mb-30">
+					<div class="row no-gutters">
+						<div class="col-lg-9 col-md-8 col-sm-12">
+							<div class="chat-detail">
+								<div class="chat-profile-header clearfix">
+									<div class="left">
+										<div class="clearfix">
+											<div class="chat-profile-name">
+												<h3>{{user.username}}</h3>
+												<span>online</span>
+											</div>
+										</div>
+									</div>
+									<div class="right text-right">
+									</div>
+								</div>
+								<div class="chat-box">
+									<div class="chat-desc customscroll" id="id_chat_item_container">
+									    <ul>
+									        <!-- Existing chat items can go here -->
+									    </ul>
+									</div>
+									<div class="chat-footer">
+										<div class="file-upload"><a href="#"><i class="fa fa-paperclip"></i></a></div>
+										<div class="chat_text_area">
+											<textarea id="id_message_send_input" placeholder="Type your message…"></textarea>
+										</div>
+										<div class="chat_send">
+											<button class="btn btn-link" type="submit" id="id_message_send_button"><i class="icon-copy ion-paper-airplane"></i></button>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+</div>
+<script>
+        const chatSocket = new WebSocket("ws://" + window.location.host + "/");
+        chatSocket.onopen = function (e) {
+            console.log("The connection was set up successfully!");
+        };
+        chatSocket.onclose = function (e) {
+            console.log("Something unexpected happened!");
+        };
+        document.querySelector("#id_message_send_input").focus();
+        document.querySelector("#id_message_send_input").onkeyup = function (e) {
+            if (e.keyCode == 13) {
+                document.querySelector("#id_message_send_button").click();
+            }
+        };
+        document.querySelector("#id_message_send_button").onclick = function (e) {
+            var messageInput = document.querySelector("#id_message_send_input").value;
+            var currentTime = new Date();
+            var time = currentTime.toLocaleTimeString();
+            chatSocket.send(JSON.stringify({
+                message: messageInput,
+                username: "{{request.user.username}}",
+                time: time
+            }));
+        };
+		chatSocket.onmessage = function (e) {
+		    const data = JSON.parse(e.data);
+		    var messageContainer = document.querySelector("#id_chat_item_container ul");
+
+		    var li = document.createElement("li");
+		    li.className = data.username === "{{request.user.username}}" ? "clearfix admin_chat" : "clearfix";
+
+		    li.innerHTML = `
+		        <div class="chat-body clearfix">
+		            <span class="message-username">${data.username.charAt(0).toUpperCase() + data.username.slice(1)}</span>
+		            <p>${data.message}</p>
+		            <div class="chat_time">${data.time}</div>
+		        </div>
+		    `;
+
+		    messageContainer.appendChild(li);
+
+		    // Scroll to the bottom of the chat container
+		    var chatContainer = document.querySelector("#id_chat_item_container");
+		    chatContainer.scrollTop = chatContainer.scrollHeight;
+
+		    // Clear the input field
+		    document.querySelector("#id_message_send_input").value = "";
+		};
+    </script>
+{% endblock page_content %}
